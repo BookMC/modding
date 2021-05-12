@@ -3,11 +3,20 @@ package org.bookmc.loader.vessel.json;
 import com.google.gson.JsonObject;
 import org.bookmc.loader.vessel.ModVessel;
 
+import java.io.File;
+
 public class JsonModVessel implements ModVessel {
     private final JsonObject object;
+    private final File file;
 
-    public JsonModVessel(JsonObject object) {
+    public JsonModVessel(JsonObject object, File file) {
         this.object = object;
+
+        if (!object.has("entrypoint")) {
+            throw new IllegalStateException("Nope! You cannot not load a mod without an entrypoint!");
+        }
+
+        this.file = file;
     }
 
 
@@ -24,5 +33,15 @@ public class JsonModVessel implements ModVessel {
     @Override
     public String getVersion() {
         return object.get("version").getAsString();
+    }
+
+    @Override
+    public String getEntrypoint() {
+        return object.get("entrypoint").getAsString();
+    }
+
+    @Override
+    public File getFile() {
+        return file;
     }
 }

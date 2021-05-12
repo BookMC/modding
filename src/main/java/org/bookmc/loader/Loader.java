@@ -8,15 +8,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class Loader {
-    private static final List<MinecraftModDiscoverer> modLoaders = new ArrayList<>();
+    private static final List<MinecraftModDiscoverer> discoverers = new ArrayList<>();
     private static final List<ModVessel> modVessels = new ArrayList<>();
 
-    public static void registerModLoader(MinecraftModDiscoverer minecraftModDiscoverer) {
-        modLoaders.add(minecraftModDiscoverer);
+    public static void registerModDiscoverer(MinecraftModDiscoverer minecraftModDiscoverer) {
+        discoverers.add(minecraftModDiscoverer);
     }
 
-    public static List<MinecraftModDiscoverer> getModLoaders() {
-        return Collections.unmodifiableList(modLoaders);
+    public static List<MinecraftModDiscoverer> getModDiscoverers() {
+        return Collections.unmodifiableList(discoverers);
     }
 
     public static void registerVessel(ModVessel vessel) {
@@ -29,6 +29,6 @@ public class Loader {
 
     static {
         // Register default mod loader.
-        Loader.registerModLoader(new BookModDiscoverer());
+        Loader.registerModDiscoverer(new BookModDiscoverer());
     }
 }

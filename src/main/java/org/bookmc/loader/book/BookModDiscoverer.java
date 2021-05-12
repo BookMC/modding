@@ -40,7 +40,7 @@ public class BookModDiscoverer implements MinecraftModDiscoverer {
 
                                 for (int i = 0; i < mods.size(); i++) {
                                     JsonObject mod = mods.get(i).getAsJsonObject();
-                                    Loader.registerVessel(new JsonModVessel(mod));
+                                    Loader.registerVessel(new JsonModVessel(mod, file));
                                 }
                             }
                         }
