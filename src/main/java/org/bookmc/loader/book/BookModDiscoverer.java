@@ -36,7 +36,7 @@ public class BookModDiscoverer implements MinecraftModDiscoverer {
                     if (entry.getName().equals(LOADER_JSON_FILE)) {
                         try (InputStream inputStream = zipFile.getInputStream(entry)) {
                             try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
-                                JsonArray mods = JsonParser.parseReader(inputStreamReader).getAsJsonArray();
+                                JsonArray mods = parser.parse(inputStreamReader).getAsJsonArray();
 
                                 for (int i = 0; i < mods.size(); i++) {
                                     JsonObject mod = mods.get(i).getAsJsonObject();

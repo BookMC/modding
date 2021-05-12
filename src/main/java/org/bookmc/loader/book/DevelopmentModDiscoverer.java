@@ -21,7 +21,7 @@ public class DevelopmentModDiscoverer implements MinecraftModDiscoverer {
         try (InputStream inputStream = this.getClass().getResourceAsStream("/book.mod.json")) {
             if (inputStream != null) {
                 try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
-                    JsonArray mods = JsonParser.parseReader(inputStreamReader).getAsJsonArray();
+                    JsonArray mods = parser.parse(inputStreamReader).getAsJsonArray();
 
                     for (int i = 0; i < mods.size(); i++) {
                         JsonObject mod = mods.get(i).getAsJsonObject();
