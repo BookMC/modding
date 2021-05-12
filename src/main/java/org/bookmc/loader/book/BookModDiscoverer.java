@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bookmc.loader.Loader;
-import org.bookmc.loader.MinecraftModLoader;
+import org.bookmc.loader.MinecraftModDiscoverer;
 import org.bookmc.loader.vessel.json.JsonModVessel;
 
 import java.io.File;
@@ -14,11 +14,11 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class BookModLoader implements MinecraftModLoader {
+public class BookModDiscoverer implements MinecraftModDiscoverer {
     private static final String LOADER_JSON_FILE = "book.mod.json";
 
     @Override
-    public void load(File[] files) {
+    public void discover(File[] files) {
         for (File file : files) {
             String name = file.getName();
 

@@ -1,6 +1,6 @@
 package org.bookmc.loader;
 
-import org.bookmc.loader.book.BookModLoader;
+import org.bookmc.loader.book.BookModDiscoverer;
 import org.bookmc.loader.vessel.ModVessel;
 
 import java.util.ArrayList;
@@ -8,14 +8,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Loader {
-    private static final List<MinecraftModLoader> modLoaders = new ArrayList<>();
+    private static final List<MinecraftModDiscoverer> modLoaders = new ArrayList<>();
     private static final List<ModVessel> modVessels = new ArrayList<>();
 
-    public static void registerModLoader(MinecraftModLoader minecraftModLoader) {
-        modLoaders.add(minecraftModLoader);
+    public static void registerModLoader(MinecraftModDiscoverer minecraftModDiscoverer) {
+        modLoaders.add(minecraftModDiscoverer);
     }
 
-    public static List<MinecraftModLoader> getModLoaders() {
+    public static List<MinecraftModDiscoverer> getModLoaders() {
         return Collections.unmodifiableList(modLoaders);
     }
 
@@ -29,6 +29,6 @@ public class Loader {
 
     static {
         // Register default mod loader.
-        Loader.registerModLoader(new BookModLoader());
+        Loader.registerModLoader(new BookModDiscoverer());
     }
 }
