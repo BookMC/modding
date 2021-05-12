@@ -1,6 +1,7 @@
 package org.bookmc.loader;
 
 import org.bookmc.loader.book.BookModDiscoverer;
+import org.bookmc.loader.book.DevelopmentModDiscoverer;
 import org.bookmc.loader.vessel.ModVessel;
 
 import java.util.ArrayList;
@@ -30,5 +31,6 @@ public class Loader {
     static {
         // Register default mod loader.
         Loader.registerModDiscoverer(new BookModDiscoverer());
+        Loader.registerModDiscoverer(new DevelopmentModDiscoverer());
     }
 }
