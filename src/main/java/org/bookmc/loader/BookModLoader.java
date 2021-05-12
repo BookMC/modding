@@ -25,9 +25,7 @@ public class BookModLoader {
                     entryClass = Class.forName(split[0]);
                 }
 
-                MethodHandles.publicLookup()
-                    .findVirtual(entryClass, split[1], MethodType.methodType(void.class))
-                    .invoke();
+                entryClass.getDeclaredMethod(split[1]).invoke(entryClass.getConstructor().newInstance());
             }
         } catch (Throwable t) {
             t.printStackTrace();
