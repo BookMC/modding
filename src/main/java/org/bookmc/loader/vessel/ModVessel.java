@@ -12,4 +12,6 @@ public interface ModVessel {
     String getEntrypoint();
 
     File getFile();
+
+    String getMixinEntrypoint();
 }

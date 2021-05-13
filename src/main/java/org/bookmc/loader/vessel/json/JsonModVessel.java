@@ -44,4 +44,9 @@ public class JsonModVessel implements ModVessel {
     public File getFile() {
         return file;
     }
+
+    @Override
+    public String getMixinEntrypoint() {
+        return object.has("mixin_entrypoint") ? object.get("mixin_entrypoint").getAsString() : null;
+    }
 }
