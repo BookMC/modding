@@ -2,7 +2,6 @@ package org.bookmc.loader;
 
 import org.bookmc.loader.vessel.ModVessel;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 

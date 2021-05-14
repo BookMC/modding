@@ -33,9 +33,15 @@ public class JsonModVessel implements ModVessel {
         return object.get("id").getAsString();
     }
 
+    @Deprecated
     @Override
     public String getAuthor() {
-        return object.get("author").getAsString();
+        return object.has("author") ? object.get("author").getAsString() : "MysteriousDev";
+    }
+
+    @Override
+    public String[] getAuthors() {
+        return toString(object.get("authors").getAsJsonArray());
     }
 
     @Override

@@ -7,7 +7,10 @@ public interface ModVessel {
 
     String getId();
 
+    @Deprecated
     String getAuthor();
+
+    String[] getAuthors();
 
     String getVersion();
 
