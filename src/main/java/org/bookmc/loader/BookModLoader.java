@@ -15,15 +15,7 @@ public class BookModLoader {
                     continue;
                 }
 
-                for (String dependency : vessel.getDependencies()) {
-                    // I believe this will become O(n^2), is there a better way to this?
-                    for (ModVessel dependencyVessel : Loader.getModVessels()) {
-                        if (dependencyVessel.getId().equals(dependency)) {
-                            load(dependencyVessel);
-                            return;
-                        }
-                    }
-                }
+                loadDependencies(vessel);
 
                 // In the chances of someone for some stupid reason decided to add their own mod as a dependency
                 if (!loaded.contains(vessel)) {
@@ -33,6 +25,19 @@ public class BookModLoader {
             }
         } catch (Throwable t) {
             t.printStackTrace();
+        }
+    }
+
+    private static void loadDependencies(ModVessel vessel) throws Throwable {
+        for (String dependency : vessel.getDependencies()) {
+            // I believe this will become O(n^2), is there a better way to this?
+            for (ModVessel dependencyVessel : Loader.getModVessels()) {
+                if (dependencyVessel.getId().equals(dependency)) {
+                    loadDependencies(dependencyVessel);
+                    load(dependencyVessel);
+                    return;
+                }
+            }
         }
     }
 
