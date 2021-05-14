@@ -17,6 +17,10 @@ import java.util.zip.ZipFile;
 public class BookModDiscoverer implements MinecraftModDiscoverer {
     private static final String LOADER_JSON_FILE = "book.mod.json";
 
+    private static final String FABRIC_JSON_FILE = "fabric.mod.json";
+
+    private static final String FORGE_JSON_FILE = "mcmod.info";
+
     @Override
     public void discover(File[] files) {
         for (File file : files) {
@@ -32,6 +36,11 @@ public class BookModDiscoverer implements MinecraftModDiscoverer {
 
                 while (entries.hasMoreElements()) {
                     ZipEntry entry = entries.nextElement();
+
+                    // Save time by just simply giving up on this
+                    if (entry.getName().equals(FABRIC_JSON_FILE) || entry.getName().equals(FORGE_JSON_FILE)) {
+                        break;
+                    }
 
                     if (entry.getName().equals(LOADER_JSON_FILE)) {
                         try (InputStream inputStream = zipFile.getInputStream(entry)) {
