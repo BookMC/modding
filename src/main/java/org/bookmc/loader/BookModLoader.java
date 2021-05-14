@@ -1,5 +1,6 @@
 package org.bookmc.loader;
 
+import org.bookmc.loader.exception.MissingDependencyException;
 import org.bookmc.loader.vessel.ModVessel;
 
 import java.util.ArrayList;
@@ -31,12 +32,18 @@ public class BookModLoader {
     private static void loadDependencies(ModVessel vessel) throws Throwable {
         for (String dependency : vessel.getDependencies()) {
             // I believe this will become O(n^2), is there a better way to this?
+            boolean isFound = false;
             for (ModVessel dependencyVessel : Loader.getModVessels()) {
                 if (dependencyVessel.getId().equals(dependency)) {
                     loadDependencies(dependencyVessel);
                     load(dependencyVessel);
-                    return;
+                    isFound = true;
+                    break;
                 }
+            }
+
+            if (!isFound) {
+                throw new MissingDependencyException(dependency);
             }
         }
     }

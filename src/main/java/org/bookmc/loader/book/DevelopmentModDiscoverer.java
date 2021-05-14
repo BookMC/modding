@@ -27,12 +27,12 @@ public class DevelopmentModDiscoverer implements MinecraftModDiscoverer {
                         JsonObject mod = mods.get(i).getAsJsonObject();
                         Loader.registerVessel(new JsonModVessel(mod, new File("there_is_no_mod_to_see"), null));
                     }
-                } catch (IOException exception) {
-                    exception.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
