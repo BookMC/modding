@@ -1,5 +1,6 @@
 package org.bookmc.loader.vessel.json;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bookmc.loader.vessel.ModVessel;
 
@@ -25,6 +26,11 @@ public class JsonModVessel implements ModVessel {
     @Override
     public String getName() {
         return object.get("name").getAsString();
+    }
+
+    @Override
+    public String getId() {
+        return object.get("id").getAsString();
     }
 
     @Override
@@ -55,5 +61,21 @@ public class JsonModVessel implements ModVessel {
     @Override
     public ClassLoader getClassLoader() {
         return classLoader;
+    }
+
+    @Override
+    public String[] getDependencies() {
+        return object.has("dependencies") ? toString(object.get("dependencies").getAsJsonArray()) : new String[0];
+    }
+
+    private String[] toString(JsonArray array) {
+        int size = array.size();
+        String[] strings = new String[size];
+
+        for (int i = 0; i < size; i++) {
+            strings[i] = array.get(i).getAsString();
+        }
+
+        return strings;
     }
 }

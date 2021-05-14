@@ -5,6 +5,8 @@ import java.io.File;
 public interface ModVessel {
     String getName();
 
+    String getId();
+
     String getAuthor();
 
     String getVersion();
@@ -16,4 +18,6 @@ public interface ModVessel {
     String getMixinEntrypoint();
 
     ClassLoader getClassLoader();
+
+    String[] getDependencies();
 }
