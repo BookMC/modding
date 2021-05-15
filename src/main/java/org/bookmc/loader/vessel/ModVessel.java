@@ -9,6 +9,8 @@ public interface ModVessel {
 
     String getDescription();
 
+    String getConfig();
+
     @Deprecated
     String getAuthor();
 

@@ -38,6 +38,11 @@ public class JsonModVessel implements ModVessel {
         return object.has("description") ? object.get("description").getAsString() : null;
     }
 
+    @Override
+    public String getConfig() {
+        return object.has("config") ? object.get("config").getAsString() : null;
+    }
+
     @Deprecated
     @Override
     public String getAuthor() {
