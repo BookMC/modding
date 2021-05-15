@@ -33,6 +33,11 @@ public class JsonModVessel implements ModVessel {
         return object.get("id").getAsString();
     }
 
+    @Override
+    public String getDescription() {
+        return object.has("description") ? object.get("description").getAsString() : null;
+    }
+
     @Deprecated
     @Override
     public String getAuthor() {
@@ -41,7 +46,7 @@ public class JsonModVessel implements ModVessel {
 
     @Override
     public String[] getAuthors() {
-        return toString(object.get("authors").getAsJsonArray());
+        return object.has("authors") ? toString(object.get("authors").getAsJsonArray()) : new String[]{getAuthor()};
     }
 
     @Override
