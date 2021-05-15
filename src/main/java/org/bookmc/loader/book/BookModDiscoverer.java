@@ -2,6 +2,8 @@ package org.bookmc.loader.book;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.launchwrapper.Launch;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.bookmc.loader.Loader;
 import org.bookmc.loader.MinecraftModDiscoverer;
 import org.bookmc.loader.classloader.BookModClassLoader;
@@ -10,6 +12,7 @@ import org.bookmc.loader.vessel.json.JsonModVessel;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -49,7 +52,8 @@ public class BookModDiscoverer implements MinecraftModDiscoverer {
 
                                 for (int i = 0; i < mods.size(); i++) {
                                     JsonObject mod = mods.get(i).getAsJsonObject();
-                                    Loader.registerVessel(new JsonModVessel(mod, file, new BookModClassLoader(file)));
+                                    Launch.classLoader.addURL(file.toURI().toURL());
+                                    Loader.registerVessel(new JsonModVessel(mod, file));
                                 }
                             }
                         }

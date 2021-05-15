@@ -2,6 +2,7 @@ package org.bookmc.loader.book;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.bookmc.loader.Loader;
 import org.bookmc.loader.MinecraftModDiscoverer;
 import org.bookmc.loader.vessel.json.JsonModVessel;
@@ -24,7 +25,7 @@ public class DevelopmentModDiscoverer implements MinecraftModDiscoverer {
 
                     for (int i = 0; i < mods.size(); i++) {
                         JsonObject mod = mods.get(i).getAsJsonObject();
-                        Loader.registerVessel(new JsonModVessel(mod, new File("there_is_no_mod_to_see"), null));
+                        Loader.registerVessel(new JsonModVessel(mod, new File("there_is_no_mod_to_see")));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -7,13 +7,11 @@ import org.bookmc.loader.vessel.ModVessel;
 import java.io.File;
 
 public class JsonModVessel implements ModVessel {
-    private final ClassLoader classLoader;
     private final JsonObject object;
     private final File file;
 
-    public JsonModVessel(JsonObject object, File file, ClassLoader classLoader) {
+    public JsonModVessel(JsonObject object, File file) {
         this.object = object;
-        this.classLoader = classLoader;
 
         if (!object.has("entrypoint")) {
             throw new IllegalStateException("Nope! You cannot not load a mod without an entrypoint!");
@@ -72,11 +70,6 @@ public class JsonModVessel implements ModVessel {
     @Override
     public String getMixinEntrypoint() {
         return object.has("mixin_entrypoint") ? object.get("mixin_entrypoint").getAsString() : null;
-    }
-
-    @Override
-    public ClassLoader getClassLoader() {
-        return classLoader;
     }
 
     @Override

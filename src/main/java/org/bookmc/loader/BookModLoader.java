@@ -75,18 +75,10 @@ public class BookModLoader {
 
         Class<?> entryClass = null;
 
-        if (vessel.getClassLoader() != null) {
-            try {
-                entryClass = Class.forName(split[0], true, vessel.getClassLoader());
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                entryClass = Class.forName(split[0]);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        try {
+            entryClass = Class.forName(split[0]);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
         loaded.add(vessel);

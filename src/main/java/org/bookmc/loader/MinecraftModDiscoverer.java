@@ -1,6 +1,7 @@
 package org.bookmc.loader;
 
 import com.google.gson.JsonParser;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import java.io.File;
 
