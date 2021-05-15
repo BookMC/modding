@@ -12,6 +12,12 @@ public class Loader {
     private static final List<MinecraftModDiscoverer> discoverers = new ArrayList<>();
     private static final List<ModVessel> modVessels = new ArrayList<>();
 
+    static {
+        // Register default mod loader.
+        Loader.registerModDiscoverer(new BookModDiscoverer());
+        Loader.registerModDiscoverer(new DevelopmentModDiscoverer());
+    }
+
     public static void registerModDiscoverer(MinecraftModDiscoverer minecraftModDiscoverer) {
         discoverers.add(minecraftModDiscoverer);
     }
@@ -26,11 +32,5 @@ public class Loader {
 
     public static List<ModVessel> getModVessels() {
         return Collections.unmodifiableList(modVessels);
-    }
-
-    static {
-        // Register default mod loader.
-        Loader.registerModDiscoverer(new BookModDiscoverer());
-        Loader.registerModDiscoverer(new DevelopmentModDiscoverer());
     }
 }
