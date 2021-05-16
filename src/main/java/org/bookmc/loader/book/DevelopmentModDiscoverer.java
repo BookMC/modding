@@ -6,6 +6,7 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.bookmc.loader.Loader;
 import org.bookmc.loader.MinecraftModDiscoverer;
 import org.bookmc.loader.vessel.json.JsonModVessel;
+import org.bookmc.loader.vessel.json.library.LibraryModVessel;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,12 @@ public class DevelopmentModDiscoverer implements MinecraftModDiscoverer {
 
                     for (int i = 0; i < mods.size(); i++) {
                         JsonObject mod = mods.get(i).getAsJsonObject();
-                        Loader.registerVessel(new JsonModVessel(mod, new File("there_is_no_mod_to_see")));
+
+                        if (mod.has("library") && mod.get("library").getAsBoolean()) {
+                            Loader.registerVessel(new LibraryModVessel(mod, new File("there_is_no_mod_to_see")));
+                        } else {
+                            Loader.registerVessel(new JsonModVessel(mod, new File("there_is_no_mod_to_see")));
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

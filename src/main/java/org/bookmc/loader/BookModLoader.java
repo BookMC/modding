@@ -17,6 +17,16 @@ public class BookModLoader {
     private static final Object object = new Object();
 
     public static void load() {
+        // Load libraries before mods
+        for (ModVessel vessel : Loader.getLibrariesVessels()) {
+            if (loaded.contains(vessel)) {
+                continue;
+            }
+
+            loadDependencies(vessel);
+            // In the chances of someone for some stupid reason decided to add their own mod as a dependency
+        }
+
         for (ModVessel vessel : Loader.getModVessels()) {
             if (loaded.contains(vessel)) {
                 continue;
